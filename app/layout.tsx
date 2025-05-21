@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/Globals/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,6 +18,7 @@ export default function RootLayout({
         className={`w-full h-full flex flex-col`}
         suppressHydrationWarning
       >
+        <Header />
         {children}
       </body>
     </html>
