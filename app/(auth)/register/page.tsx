@@ -1,6 +1,7 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export default function Register() {
@@ -21,10 +22,9 @@ export default function Register() {
             }
         } catch (error) {
         } finally {
+            revalidatePath('/')
             redirect("/")
         }
-
-
     }
 
     return (
