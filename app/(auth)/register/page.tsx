@@ -1,10 +1,12 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { useRouter } from 'next/navigation'
 
 export default function Register() {
+
+    const router = useRouter()
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -22,7 +24,7 @@ export default function Register() {
             }
         } catch (error) {
         } finally {
-            revalidatePath('/')
+            router.refresh();
             redirect("/")
         }
     }
