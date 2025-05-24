@@ -1,14 +1,11 @@
 import Link from "next/link";
 import Navigation from "./Navigation";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 import { signoutAction } from "@/app/actions";
+import { getSession } from "@/api";
 
 export default async function Header() {
 
-    const session = await auth.api.getSession({
-    headers: await headers()
-    })
+    const session = await getSession()
 
     return (
         <header className="sticky px-16 py-2 flex justify-center">
