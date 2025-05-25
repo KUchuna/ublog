@@ -8,20 +8,20 @@ import Link from "next/link";
 export default function Navigation() {
     return (
         <div className="flex">
-            <Image src={logo} width={50} height={50} alt="Ublog" className="rounded-full mr-6"/>
-            <motion.span className="px-2 py-1 rounded-lg font-medium cursor-pointer"
+            <Image src={logo} width={500} height={500} alt="Ublog" className="mr-6 w-full h-[40px]"/>
+            <motion.span className="px-2 py-1 rounded-lg font-medium cursor-pointer flex justify-center items-center"
                 whileHover={{backgroundColor: "#c879ff", scale: 1.1}}
                 whileTap={{scale: 0.9}}
             >
                 <Link href='/'>Home</Link>
             </motion.span>
-            <motion.span className="px-2 py-1 rounded-lg font-medium cursor-pointer"
+            <motion.span className="px-2 py-1 rounded-lg font-medium cursor-pointer flex justify-center items-center"
                 whileHover={{backgroundColor: "#c879ff", scale: 1.1}}
                 whileTap={{scale: 0.9}}
             >
                 <Link href='/'>Blog</Link>
             </motion.span>
-            <motion.span className="px-2 py-1 rounded-lg font-medium cursor-pointer"
+            <motion.span className="px-2 py-1 rounded-lg font-medium cursor-pointer flex justify-center items-center"
                 whileHover={{backgroundColor: "#c879ff", scale: 1.1}}
                 whileTap={{scale: 0.9}}
             >

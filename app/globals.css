@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-main: #826aed;
+  --color-main: #9b00a9;
   --color-secondary: #c879ff;
   --color-accent-100: #ffb7ff;
   --color-accent-200: #3bf4fb;
@@ -14,12 +14,57 @@
 
 * {
   font-family: "Montserrat", sans-serif;
+  
+}
+
+*::selection {
+  background-color: var(--color-secondary);
+  color: white;
 }
 
 header {
   background: rgba(255, 255, 255, 0.09);
-  border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.6px);
   -webkit-backdrop-filter: blur(7.6px);
+}
+
+#register {
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+
+.container {
+  --uib-size: 24px;
+  --uib-color: white;
+  --uib-speed: .8s;
+  --uib-bg-opacity: 0.1;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  transform-origin: center;
+  animation: rotate var(--uib-speed) linear infinite;
+  will-change: transform;
+  overflow: visible;
+}
+
+.car {
+  fill: none;
+  stroke: var(--uib-color);
+  stroke-dasharray: 25, 75;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  transition: stroke 0.5s ease;
+}
+
+.track {
+  fill: none;
+  stroke: var(--uib-color);
+  opacity: var(--uib-bg-opacity);
+  transition: stroke 0.5s ease;
+}
+
+@keyframes rotate {
+100% {
+  transform: rotate(360deg);
+}
 }

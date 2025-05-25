@@ -16,8 +16,8 @@ export default async function Header() {
                         <form action={signoutAction}><button className="cursor-pointer">Logo out</button></form>
                         :
                         <>
-                            <Link href='login'>Log in</Link>
-                            <Link href='register'>Register</Link>
+                            <Link href='login' className="border border-white rounded-3xl px-3 py-1 hover:bg-white hover:text-main duration-200">Log in</Link>
+                            <Link href='register' className="border border-main text-main rounded-3xl px-3 py-1 bg-white hover:bg-main hover:text-white hover:border-white duration-200">Register</Link>
                         </>
                     }
                 </div>
