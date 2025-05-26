@@ -9,10 +9,9 @@ import { headers } from "next/headers";
 
 export async function signoutAction() {
     try {
-        const response = await auth.api.signOut({
+        const _ = await auth.api.signOut({
         headers: await headers()
         })
-        console.log(response)
     } catch (error) {
         console.log(error)
     } finally {
