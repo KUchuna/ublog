@@ -3,10 +3,7 @@
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import { useRouter } from 'next/navigation'
-import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
-import Loading from "@/components/Globals/Loading";
 import { z } from "zod";
 import AuthForm from "@/components/Auth/AuthForm";
 

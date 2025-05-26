@@ -1,3 +1,4 @@
+import Hero from "@/components/Home/Hero";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
@@ -7,9 +8,15 @@ export default async function Home() {
     headers: await headers()
   })
 
-  const user = session?.user;
+  let user;
+
+  session ? user = session.user : user = null;
 
   return (
-    <h1 className="text-4xl w-full text-center text-black-rich">Hello, {user ? user.name : "World!"}</h1>
+    <div className="max-w-7xl w-full">
+      <Hero 
+        user={user}
+      />
+    </div>
   );
 }

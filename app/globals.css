@@ -1,22 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --color-main: #9b00a9;
   --color-main-hover: #7a0185;
-  --color-secondary: #c879ff;
+  --color-secondary: #9C39D4;
   --color-accent-100: #ffb7ff;
   --color-accent-200: #3bf4fb;
   --color-accent-300: #caff8a;
+  --color-accent-400: #511CA2;
+  --color-platinum: #e6e8e6;
   --color-text: #f9f5e3;
   --color-red-rich: #ff0022;
   --color-black-rich: #0f0326;
+  --font-size-xs: 0.75rem;
+  --font-dancing: 'Dancing Script';
+  --font-poppins: 'Poppins';
 }
 
-* {
-  font-family: "Montserrat", sans-serif;
+/* * {
+  font-family: "Poppins", sans-serif;
   
-}
+} */
 
 *::selection {
   background-color: var(--color-secondary);
