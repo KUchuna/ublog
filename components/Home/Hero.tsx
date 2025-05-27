@@ -14,7 +14,7 @@ export default function Hero({user}: {user: User | null}) {
             <div className="w-[60%] h-[420px] relative">
                 <Image src={'/images/hero.png'} alt="" fill className="object-cover object-bottom-right z-0 "/>
                 <motion.div 
-                    className="z-10 absolute top-1/2 -translate-y-1/2 left-20 max-w-[40%] text-white bg-accent-400 shadow-2xl px-3 py-4 rounded-xl"
+                    className="z-10 border border-white absolute top-1/2 -translate-y-1/2 left-20 max-w-[40%] text-white bg-accent-400 shadow-2xl px-3 py-4 rounded-xl"
                     whileHover={{scale: 1.1}}
                     transition= {{
                         duration: 0.3,
@@ -48,11 +48,19 @@ export default function Hero({user}: {user: User | null}) {
                 </div>
             </div>
             <div className="w-[40%] flex flex-col justify-center items-center px-10 font-dancing">
-                <p className="text-xl italic text-main">
+                <motion.p 
+                    className="text-xl italic text-main"
+                    animate={{y: [0, 10, 0]}}
+                    transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                >
                    "Every story begins with a voice — yours.
                     Share your journey, your passion, your world.
                     UBlog is the canvas. Start blogging today."
-                </p>
+                </motion.p>
                 <p className="ml-auto italic font-bold">- ChatGPT</p>
             </div>
         </section>
