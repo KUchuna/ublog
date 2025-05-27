@@ -22,7 +22,7 @@ export default function Hero({user}: {user: User | null}) {
                     }}
 
                 >
-                    <h1 className="text-3xl font-bold mb-1 cursor-default ">
+                    <h1 className="text-3xl font-bold mb-1 cursor-default text-center">
                         {user ? `Welcome back, ${user.name}!` : "Welcome to UBlog"}
                     </h1>
                     <p className="text-xs cursor-default  italic">

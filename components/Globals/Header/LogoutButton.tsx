@@ -13,7 +13,7 @@ export function LogoutButton() {
       }`}
       disabled={pending}
     >
-      {pending ? "Logging out..." : "Log out"}
+      Log out
     </button>
   );
 }
