@@ -64,7 +64,7 @@ export default function Register() {
     }
 
     return (
-        <div className="flex justify-center items-center w-full h-screen px-10">
+        <div className="flex justify-center items-center w-full h-full px-10">
             <AuthForm 
                 errors={errors}
                 handleSubmit={handleSubmit}
