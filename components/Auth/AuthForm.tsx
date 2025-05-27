@@ -13,7 +13,7 @@ export default function AuthForm({errors, handleSubmit, loading, registration, n
 ) {
     return (
         <>  
-            <div className="flex w-full max-w-[1200px] h-[90%] rounded-2xl shadow-2xl overflow-hidden">
+            <div className="flex w-full max-w-[1200px] h-[50%] rounded-2xl shadow-2xl overflow-hidden bg-white">
                 <div className="w-[60%] relative">
                     <Image
                     src="/images/authimage.png"
@@ -44,7 +44,7 @@ export default function AuthForm({errors, handleSubmit, loading, registration, n
                             <input name="password" id="password" type="password" className={`bg-white border focus:border-secondary outline-none rounded-lg px-2 py-2 ${errors.password || notFound ? "border-red-rich" : "border-gray-300"}`} placeholder="Enter your password"></input>
                             {errors.password && <p className="text-sm text-red-rich italic">{errors.password}</p>}
                         </div>
-                        <button className={`bg-main text-white font-bold rounded-lg py-2 ${loading ? "cursor-not-allowed" : "cursor-pointer"} flex justify-center items-center hover:bg-main-hover`} disabled={loading}>{loading ? <Loading /> : (registration ? "Register" : "Log in")}</button>
+                        <button className={`bg-main text-white font-bold rounded-lg py-2 ${loading ? "cursor-not-allowed" : "cursor-pointer"} flex justify-center items-center hover:bg-main-hover shadow-xl`} disabled={loading}>{loading ? <Loading /> : (registration ? "Register" : "Log in")}</button>
                     </form>
                     <p className="text-sm text-center mt-4">{registration ? "Already have an account?" : "Don't have an account?"} <Link href={`${registration ? "/login" : "/register"}`} className="font-bold text-main hover:text-main-hover">{registration ? "Log in here" : "Sign up here"}</Link></p>
                 </div>

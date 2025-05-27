@@ -1,3 +1,4 @@
+import Featured from "@/components/Home/Featured";
 import Hero from "@/components/Home/Hero";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
@@ -17,6 +18,7 @@ export default async function Home() {
       <Hero 
         user={user}
       />
+      <Featured />
     </div>
   );
 }

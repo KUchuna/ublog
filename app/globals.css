@@ -75,3 +75,8 @@ header {
   transform: rotate(360deg);
 }
 }
+
+section {
+  margin: 5rem 0;
+  width: 100%;
+}

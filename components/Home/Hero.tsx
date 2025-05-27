@@ -11,7 +11,7 @@ export default function Hero({user}: {user: User | null}) {
 
     return (
         <section className="w-full bg-white rounded-2xl overflow-hidden shadow-2xl flex select-none">
-            <div className="w-[60%] h-[420px] relative">
+            <div className="w-[60%] h-[520px] relative">
                 <Image src={'/images/hero.png'} alt="" fill className="object-cover object-bottom-right z-0 "/>
                 <motion.div 
                     className="z-10 border border-white absolute top-1/2 -translate-y-1/2 left-20 max-w-[40%] text-white bg-accent-400 shadow-2xl px-3 py-4 rounded-xl"
