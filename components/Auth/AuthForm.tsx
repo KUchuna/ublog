@@ -13,7 +13,7 @@ export default function AuthForm({errors, handleSubmit, loading, registration, n
 ) {
     return (
         <>  
-            <div className="flex w-full max-w-[1200px] h-[50%] rounded-2xl shadow-2xl overflow-hidden bg-white">
+            <div className="flex w-full max-w-[1200px] md:h-[90%] 2xl:h-[70%] rounded-2xl shadow-2xl overflow-hidden bg-white">
                 <div className="w-[60%] relative">
                     <Image
                     src="/images/authimage.png"
