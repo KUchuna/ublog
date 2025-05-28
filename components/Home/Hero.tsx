@@ -34,6 +34,7 @@ export default function Hero({user}: {user: User | null}) {
                     <motion.button 
                         className="px-4 py-2 bg-main border border-main shadow-xl cursor-pointer rounded-lg text-white"
                         whileHover={{translateY: -5}}
+                        whileTap={{translateY: 0}}
                         onClick={() => router.push('/about')}
                     >
                         Learn more
@@ -41,6 +42,7 @@ export default function Hero({user}: {user: User | null}) {
                     <motion.button 
                         className="px-4 py-2 bg-white border border-white shadow-xl cursor-pointer rounded-lg text-main"
                         whileHover={{translateY: -5}}
+                        whileTap={{translateY: 0}}
                         onClick={() => router.push('/blog')}
                     >
                         Read posts
