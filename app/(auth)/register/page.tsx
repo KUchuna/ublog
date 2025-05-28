@@ -38,7 +38,6 @@ export default function Register() {
                 }
             });
             setErrors(fieldErrors);
-            console.log(fieldErrors)
             return;
         }
 

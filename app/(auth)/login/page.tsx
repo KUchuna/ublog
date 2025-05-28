@@ -38,7 +38,6 @@ export default function Login() {
                 }
             });
             setErrors(fieldErrors);
-            console.log(fieldErrors)
             return;
         }
 
@@ -46,7 +45,7 @@ export default function Login() {
             email: formData.get('email') as string,
             password: formData.get('password') as string,
             callbackURL: "/dashboard",
-            rememberMe: false
+            rememberMe: formData.get('remember') === "on" ? true : false
         }, {
             onRequest: () => {
                 setLoading(true)
