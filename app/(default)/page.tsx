@@ -1,14 +1,10 @@
-import Tiptap from "@/components/Globals/TipTap";
+import { getSession } from "@/api";
 import Featured from "@/components/Home/Featured";
 import Hero from "@/components/Home/Hero";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 
 export default async function Home() {
 
-  const session = await auth.api.getSession({
-    headers: await headers()
-  })
+  const session = await getSession()
 
   let user;
 

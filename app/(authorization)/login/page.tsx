@@ -1,8 +1,7 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
-import { useRouter } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { useState } from "react";
 import { z } from "zod";
 import AuthForm from "@/components/Auth/AuthForm";
@@ -19,6 +18,9 @@ export default function Login() {
     const [notFound, setNotFound] = useState(false)
 
     const router = useRouter()
+
+    const searchParams = useSearchParams()
+    const callbackUrl = searchParams.get("callbackUrl") || "/"
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -44,7 +46,7 @@ export default function Login() {
         const _ = await authClient.signIn.email({
             email: formData.get('email') as string,
             password: formData.get('password') as string,
-            callbackURL: "/dashboard",
+            callbackURL: callbackUrl,
             rememberMe: formData.get('remember') === "on" ? true : false
         }, {
             onRequest: () => {
@@ -54,7 +56,6 @@ export default function Login() {
             },
             onSuccess: () => {
                 router.refresh();
-                redirect("/")
             },
             onError: (ctx) => {
                 if (ctx.error.code == "INVALID_EMAIL_OR_PASSWORD") {

@@ -15,7 +15,7 @@ export default function DefaultLayout({
   return (
     <>
       <Header />
-      <main className="flex flex-col px-16 justify-center items-center">
+      <main className="flex flex-col px-16 py-4 justify-center items-center">
         {children}
       </main>
     </>

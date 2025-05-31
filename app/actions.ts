@@ -1,10 +1,10 @@
 "use server"
 
 import { auth } from "@/lib/auth.ts";
-//import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
+import { createBlog } from "@/api";
 
 
 export async function signoutAction() {
@@ -18,4 +18,13 @@ export async function signoutAction() {
         revalidatePath('/')
         redirect('/')
     }
+}
+
+export async function createBlogAction({title, content, user_id}: {title:string, content:string, user_id: string}) {
+    try {
+    const _ = await createBlog(title, content, user_id);
+  } catch (error) {
+    console.error(error);
+    return;
+  }
 }

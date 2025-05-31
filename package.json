@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@better-fetch/fetch": "^1.1.18",
     "@neondatabase/serverless": "^0.4.26",
     "@next/env": "^15.3.2",
+    "@tiptap/extension-placeholder": "^2.12.0",
     "@tiptap/pm": "^2.12.0",
     "@tiptap/react": "^2.12.0",
     "@tiptap/starter-kit": "^2.12.0",

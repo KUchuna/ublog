@@ -1,0 +1,106 @@
+.tiptap-body {
+  border: 1px solid #ffb7ff;
+  border-radius: 0 0 8px 8px;
+  padding: 5px 10px;
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+  background-color: white;
+  font-weight: 300;
+}
+
+.tiptap-body::-webkit-scrollbar {
+  width: 0px;
+}
+ 
+
+.tiptap-body:focus {
+  outline: none
+}
+
+.tiptap-body p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+  font-size: 0.9em;
+}
+
+.tiptap-title p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.blockquote {
+    border-left: #adb5bd 4px solid;
+    padding: 0 1em;
+    color: #adb5bd;
+}
+
+.bullet-list {
+    list-style: disc;
+    padding: 0 0 0 1.5em;
+}
+
+.bullet-list ul {
+    list-style: circle;
+}
+
+.code-block {
+    background-color: #322648;
+    width:fit-content;
+    border-radius: 8px;
+    color: white;
+    padding: 10px;
+}
+
+.ordered-list {
+    list-style: decimal;
+    padding: 0 0 0 1.5em;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.horizontal-rule {
+    border-color: #322648;
+    margin: 10px 0;
+}
+
+.tiptap-body h1 {
+    font-weight: bold;
+    font-size: 2em
+}
+
+.tiptap-body h2 {
+    font-weight: bold;
+    font-size: 1.5em
+}
+
+.tiptap-body h3 {
+    font-weight: bold;
+    font-size: 1.2em
+}
+
+.tiptap-body p {
+    font-size: 0.9em;
+
+}
+
+#editor-options button {
+    background-color: #9b00a9;
+    padding: 3px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#editor-options button:hover {
+    background-color: #7a0185;
+}

@@ -20,3 +20,26 @@ export async function getSession() {
         console.log(error);
     }
 }
+
+export async function createBlog(
+  title: string,
+  content: string,
+  user_id: string
+) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/create-post`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, content, user_id }),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to create blog");
+  }
+
+  return await response.json();
+}

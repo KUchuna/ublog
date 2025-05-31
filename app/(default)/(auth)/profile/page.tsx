@@ -1,17 +1,16 @@
 import { getSession } from "@/api"
-import { redirect } from "next/navigation"
+import Link from "next/link"
 
 export default async function ProfilePage() {
 
     const session = await getSession()
 
-    if (!session?.user) {
-        return redirect('/login')
-    }
+
 
     return (
-        <div>
-            Hello, {session.user.name}!
+        <div className="flex flex-col">
+            Hello, {session?.user.name}!
+            <Link href="/newblog">Share your story</Link>
         </div>
     )
 }
