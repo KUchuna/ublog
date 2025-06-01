@@ -3,7 +3,6 @@ import { auth } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
-
 export async function getSession() {
     try {
         const session = await auth.api.getSession({
@@ -42,4 +41,12 @@ export async function createBlog(
   }
 
   return await response.json();
+}
+
+export async function getBlogs() {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-blogs`, {
+      headers: await headers()
+    })
+    const { blogs } = await response.json();
+    return blogs.rows;
 }

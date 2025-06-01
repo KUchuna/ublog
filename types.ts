@@ -1,3 +1,10 @@
+import { NextRequest, NextResponse } from "next/server";
+
+export type Middleware = (request: NextRequest) => Promise<NextResponse>;
+
+export type MiddlewareFactory = (middleware: Middleware) => Middleware;
+
+
 
 export interface User {
     id: string;

@@ -61,7 +61,7 @@ export default function Tiptap({ handleSubmit}: {handleSubmit: (formData: FormDa
       immediatelyRender: false,
       editorProps: {
         attributes: {
-          class: 'tiptap-body shadow-lg'
+          class: 'tiptap-body'
         },
         handlePaste(view, event) {
           event.preventDefault()
@@ -115,13 +115,21 @@ export default function Tiptap({ handleSubmit}: {handleSubmit: (formData: FormDa
     return null
   }
 
+  const variants = {
+    hover: { rotate: -45}
+  }
+
+  const buttonVariants = {
+    hover: { scale: 1.1}
+  };
+
   return (
-    <div className="flex flex-col">
-      <p className="italic">Post title</p>
+    <div className="flex flex-col bg-white p-6 py-10 rounded-lg shadow-lg ">
+      <p className="font-semibold text-black-rich">Post title</p>
       <EditorContent editor={title} />
-      <p className="italic">Post body</p>
+      <p className="font-semibold text-black-rich">Content</p>
       <div className="flex flex-col gap-3 bg-[#f4f6f9] rounded-t-lg px-[10px] py-[5px] border border-[#ccced1]" id="editor-options">
-        <div className="flex gap-2">
+        <div className="flex gap-2 py-2">
           <button
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           className={editor.isActive('blockquote') ? 'is-active' : ''}
@@ -261,12 +269,20 @@ export default function Tiptap({ handleSubmit}: {handleSubmit: (formData: FormDa
           readOnly
         />
         <motion.button 
-          className="bg-accent-300 px-3 py-1 rounded-lg ml-auto text-main font-bold cursor-pointer shadow-lg"
-          whileHover={{ scale: 1.1 }}
+          className="bg-accent-300 px-6 py-3 rounded-lg ml-auto text-main font-bold cursor-pointer shadow-md flex items-center gap-2"
+          whileHover="hover"
           whileTap={{ scale: 0.9}}
+          variants={buttonVariants}
           transition={{ type: "spring", stiffness: 300, damping: 20}}
           >
-          Add post!
+          Add post! 
+          <motion.img 
+            src="/icons/tiptap/send.svg"
+            alt="Post"
+            width={18}
+            height={18}
+            variants={variants}
+          />
         </motion.button>
       </form>
     </div>

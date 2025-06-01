@@ -21,6 +21,7 @@ export async function signoutAction() {
 }
 
 export async function createBlogAction({title, content, user_id}: {title:string, content:string, user_id: string}) {
+
     try {
     const _ = await createBlog(title, content, user_id);
   } catch (error) {

@@ -31,8 +31,14 @@
   color: #adb5bd;
   content: attr(data-placeholder);
   float: left;
-  height: 0;
+  font-size: 16px;
+  font-weight: 400;
   pointer-events: none;
+}
+
+.tiptap-title p {
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .blockquote {

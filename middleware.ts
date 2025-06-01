@@ -1,29 +1,16 @@
-import { betterFetch } from "@better-fetch/fetch";
-import type { auth } from "@/lib/auth";
-import { NextRequest, NextResponse } from "next/server";
+import { chain } from "@/middlewares/chain";
+import { withAuthMiddleware } from "@/middlewares/withAuthMiddleware";
+import { withApiMiddleware } from "@/middlewares/withApiMiddleware";
 
-type Session = typeof auth.$Infer.Session;
-
-export async function middleware(request: NextRequest) {
-	const { data: session } = await betterFetch<Session>("/api/auth/get-session", {
-		baseURL: request.nextUrl.origin,
-		headers: {
-			cookie: request.headers.get("cookie") || "",
-		},
-	});
-
-	if (!session) {
-		const signInUrl = new URL("/login", request.url);
-		signInUrl.searchParams.set("callbackUrl", request.nextUrl.pathname);
-		return NextResponse.redirect(signInUrl);
-	}
-
-	return NextResponse.next();
-}
+export default chain([
+	withApiMiddleware,
+  	withAuthMiddleware,
+]);
 
 export const config = {
-    matcher: [
-        "/newblog/:path*",
-        "/profile/:path*"   
-    ]
-}
+  matcher: [
+    "/api/:path((?!auth).*)",
+    "/newblog/:path*",
+    "/profile/:path*",
+  ],
+};
