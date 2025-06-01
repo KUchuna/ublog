@@ -20,10 +20,10 @@ export async function signoutAction() {
     }
 }
 
-export async function createBlogAction({title, content, user_id}: {title:string, content:string, user_id: string}) {
+export async function createBlogAction({title, content, description, user_id}: {title:string, content:string, description:string, user_id: string}) {
 
     try {
-    const _ = await createBlog(title, content, user_id);
+    const _ = await createBlog(title, content, description, user_id);
   } catch (error) {
     console.error(error);
     return;

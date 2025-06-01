@@ -23,6 +23,7 @@ export async function getSession() {
 export async function createBlog(
   title: string,
   content: string,
+  description: string,
   user_id: string
 ) {
   const response = await fetch(
@@ -32,14 +33,14 @@ export async function createBlog(
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, content, user_id }),
+      body: JSON.stringify({ title, content, description, user_id }),
     }
   );
 
   if (!response.ok) {
     throw new Error("Failed to create blog");
   }
-
+  
   return await response.json();
 }
 
@@ -48,5 +49,5 @@ export async function getBlogs() {
       headers: await headers()
     })
     const { blogs } = await response.json();
-    return blogs.rows;
+    return blogs?.rows;
 }

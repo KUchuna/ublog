@@ -8,9 +8,13 @@ import { z } from "zod";
 import AuthForm from "@/components/Auth/AuthForm";
 
 const RegisterSchema = z.object({
-    name: z.string().min(1, "Name is required"),
+    name: z.string().refine(val => val.replace(/\s/g, '').length >= 5, {
+    message: "Name must be at least 5 characters long"
+    }),
     email: z.string().email("Invalid email address").min(1, "Email is required"),
-    password: z.string().min(8, "Password must be at least 8 characters long")
+    password: z.string().refine(val => val.replace(/\s/g, '').length >= 8, {
+    message: "Name must be at least 8 non-whitespace characters long"
+    })
 })
 
 export default function Register() {

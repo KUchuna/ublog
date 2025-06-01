@@ -1,17 +1,29 @@
 import { getBlogs } from "@/api";
+import BlogCard from "@/components/Blog/BlogCard";
 import "@/css/tiptap.css";
+import { BlogPost } from "@/types";
 
 export default async function Blog() {
   const blogs = await getBlogs();
 
+  if (blogs.length == 0) {
+    return (
+      <div>
+        No posts available
+      </div>
+    )
+  }
+
   return (
-    <div className="flex gap-4">
-      {blogs.map((blog: {title: string, body: string, id: string}) => (
-        <div key={blog.id}>
-          <h1 dangerouslySetInnerHTML={{ __html: blog.title }} />
-          <div dangerouslySetInnerHTML={{ __html: blog.body }} />
-        </div>
-      ))}
+    <div className="max-w-7xl w-full">
+      <div className="flex flex-wrap justify-center w-full gap-5">
+        {blogs.map((blog: BlogPost) => (
+          <BlogCard 
+            blog={blog}
+            key={blog.id}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -16,8 +16,8 @@ export default function RootLayout({
       <body
         className={`w-full h-full flex flex-col bg-platinum font-poppins`}
         suppressHydrationWarning
-      >
-        {children}
+        >
+          {children}
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 import { getSession } from "@/api";
-import Tiptap from "./TipTap";
+import NewBlogEditor from "./NewBlogEditor";
 import { createBlogAction } from "@/app/actions";
+import { redirect } from "next/navigation";
 
 export default async function NewBlogForm() {
 
@@ -12,18 +13,22 @@ export default async function NewBlogForm() {
         "use server"
         const title = formData.get("title") as string
         const content = formData.get("content") as string
+        const description = formData.get("description") as string
         const user_id = user?.id as string
 
         try {
-            await createBlogAction({title: title, content: content, user_id: user_id})
+            await createBlogAction({title: title, content: content, description: description, user_id: user_id})
         } catch (error) {
             console.log("error creating blog", error)
+            return
+        } finally {
+            redirect('/blog')
         }
     }
 
     return (
         <div id="new-blog-form" className="">
-            <Tiptap 
+            <NewBlogEditor 
                 handleSubmit={handleSubmit}
             />
         </div>

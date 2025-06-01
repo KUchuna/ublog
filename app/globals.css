@@ -11,7 +11,7 @@
   --color-accent-300: #caff8a;
   --color-accent-400: #511CA2;
   --color-platinum: #e6e8e6;
-  --color-text: #f9f5e3;
+  --color-text: #b2a3b5;
   --color-red-rich: #ff0022;
   --color-black-rich: #0f0326;
   --font-size-xs: 0.75rem;
@@ -72,7 +72,6 @@ header {
 }
 
 section {
-  margin: 3rem 0;
   width: 100%;
 }
 

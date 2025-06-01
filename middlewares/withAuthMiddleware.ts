@@ -11,8 +11,6 @@ export function withAuthMiddleware(next: CustomMiddleware): CustomMiddleware {
     const url = request.nextUrl;
     const { pathname } = url;
 
-    console.log("withAuthMiddleware", pathname);
-
     if (pathname.startsWith(`/api/`)) {
         return
     }

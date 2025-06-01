@@ -15,3 +15,12 @@ export interface User {
     updatedAt: Date;
     image?: string | null | undefined;
 }
+
+export interface BlogPost {
+    title: string;
+    body: string;
+    id: number;
+    author: string;
+    createdat: string;
+    description: string;
+}
