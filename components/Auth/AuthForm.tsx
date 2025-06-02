@@ -1,34 +1,134 @@
+"use client"
+
 import Image from "next/image";
 import Loading from "@/components/Globals/Loading";
 import Link from "next/link";
+import { z } from "zod";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { APIError } from "better-auth/api";
+import { AuthFormProps } from "@/types";
 
-export default function AuthForm({errors, handleSubmit, loading, registration, notFound} :
+const LoginSchema = z.object({
+    email: z.string().email("Invalid email address").min(1, "Email is required"),
+    password: z.string().min(8, "Password should be at least 8 characters long")
+})
+
+const RegisterSchema = z.object({
+    name: z.string().max(12,"Maximum 15 characters").refine(val => val.replace(/\s/g, '').length >= 5, {
+        message: "Name must be at least 5 characters long",
+    }),
+    email: z
+        .string()
+        .email("Invalid email address")
+        .min(1, "Email is required")
+        .max(150, "Email must not exceed 150 characters"),
+    password: z
+        .string()
+        .min(8, "Password must be at least 8 characters long")
+        .refine(
+            (val) =>
+            /[A-Z]/.test(val) &&
+            /[a-z]/.test(val) &&
+            /[0-9]/.test(val) &&  
+            /[^A-Za-z0-9]/.test(val),
+            {
+            message: "Password must include uppercase letter, lowercase letter, 1 number, and 1 special character",
+            }
+        )
+});
+
+export default function AuthForm({ handleLogin, handleSignUp, registration} : AuthFormProps) 
     {
-        errors: {[key: string]: string},
-        handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
-        loading: boolean,
-        registration: boolean,
-        notFound? : boolean
+
+    const [errors, setErrors] = useState<{[key: string]: string}>({})
+    const [loading, setLoading] = useState(false)
+    const [notFound, setNotFound] = useState(false)
+
+    const router = useRouter()
+
+    const searchParams = useSearchParams()
+    const callbackUrl = searchParams.get("callbackUrl") || "/"
+
+
+
+    async function handleValidation(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+
+        setNotFound(false)
+        setErrors({})
+
+        const formData = new FormData(e.currentTarget)
+
+        const result = registration ? 
+        RegisterSchema.safeParse({
+            name: formData.get('name'),
+            password: formData.get('password'),
+            email: formData.get('email'),
+        })
+            : 
+        LoginSchema.safeParse({
+            password: formData.get('password'),
+            email: formData.get('email'),
+        })
+
+        if (!result.success) {
+            const fieldErrors: { [key: string]: string } = {};
+            result.error.errors.forEach((error) => {
+                if (error.path.length > 0) {
+                    fieldErrors[error.path[0]] = error.message;
+                }
+            });
+            setErrors(fieldErrors);
+            return;
+        }
+
+        try {
+            setLoading(true);
+            if (!registration) {
+                if (handleLogin) {
+                    const response = await handleLogin(formData)
+                    if (response) {
+                        router.push(callbackUrl)
+                    } else {
+                        setNotFound(true);
+                    }
+                }
+            } else {
+                if(handleSignUp) {
+                    const response = await handleSignUp(formData)
+                    if (response) {
+                        router.push(callbackUrl)
+                    }
+                }
+            }
+        } catch (error) {
+            throw error
+        }
+
+        setLoading(false);
     }
-) {
+
     return (
         <>  
-            <div className="flex w-full max-w-[1200px] xl:h-[70%] [@media(max-height:800px)]:h-[90%] 2xl:h-[60%] rounded-2xl shadow-2xl overflow-hidden bg-white">
+            <div className="flex w-full max-w-[1200px] xl:h-[70%] [@media(max-height:805px)]:h-[90%] 2xl:h-[70%] rounded-2xl shadow-2xl overflow-hidden bg-white">
                 <div className="w-[60%] relative">
                     <Image
-                    src="/images/authimage.png"
-                    alt="logo"
-                    fill
-                    className="object-cover"
+                        src="/images/authimage.png"
+                        alt="logo"
+                        fill
+                        className="object-cover"
+                        priority
                     />
                 </div>
-                <div className="w-[40%] py-10 px-10 flex flex-col justify-center">
+                <div className="w-[40%] py-10 px-10 flex flex-col justify-center h-full">
                     <h1 className="text-5xl font-bold">{registration ? "Welcome!" : "Welcome back!"}</h1>
-                    <p className="font-sm text-gray-500 my-5 mb-auto">Please login to continue.</p>
-                    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-3 mb-auto">
+                    <p className="font-sm text-gray-500 my-5">{registration ? "Please register to continue." : "Please login to continue."}</p>
+                    <form onSubmit={handleValidation} className="w-full flex flex-col gap-3 my-auto">
+                        <input type="hidden" name="callbackUrl" value={callbackUrl} />
                         {registration && (
                             <div className="flex flex-col">
-                                <label htmlFor="name">Name</label>
+                                <label htmlFor="name">Username</label>
                                 <input name="name" id="name" className={`bg-white border focus:border-secondary outline-none rounded-lg px-2 py-2 ${errors.name ? "border-red-rich" : "border-gray-300"}`} placeholder="John Smith"></input>
                                 {errors.name && <p className="text-sm text-red-rich italic">{errors.name}</p>}
                             </div>
@@ -50,7 +150,7 @@ export default function AuthForm({errors, handleSubmit, loading, registration, n
                                 <input name="remember" id="remember" type="checkbox"></input>
                             </div>
                         }
-                        <button className={`bg-main text-white font-bold rounded-lg py-2 ${loading ? "cursor-not-allowed" : "cursor-pointer"} flex justify-center items-center hover:bg-main-hover shadow-xl`} disabled={loading}>{loading ? <Loading /> : (registration ? "Register" : "Log in")}</button>
+                        <button className={`bg-main text-white font-bold rounded-lg py-2 ${loading ? "cursor-not-allowed" : "cursor-pointer"} flex justify-center items-center hover:bg-main-hover shadow-xl mt-2`} disabled={loading}>{loading ? <Loading /> : (registration ? "Register" : "Log in")}</button>
                     </form>
                     <p className="text-sm text-center mt-4">{registration ? "Already have an account?" : "Don't have an account?"} <Link href={`${registration ? "/login" : "/register"}`} className="font-bold text-main hover:text-main-hover">{registration ? "Log in here" : "Sign up here"}</Link></p>
                 </div>

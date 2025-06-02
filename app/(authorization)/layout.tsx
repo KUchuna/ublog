@@ -1,28 +1,27 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import "@/app/globals.css";
 import { getSession } from "@/api";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "UBlog - Auth",
-  description: "login and register to Ublog",
+  description: "Login and register to UBlog",
 };
 
-const session = await getSession()
-
-export default function AuthLayout({
+export default async function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getSession()
 
   if (session) {
-    return redirect("/");
+    redirect("/");
   }
 
   return (
     <main className="flex w-full h-full justify-center items-center">
-        {children}
+      {children}
     </main>
   );
 }

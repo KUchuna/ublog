@@ -1,3 +1,4 @@
+import { APIError } from "better-auth/api";
 import { NextRequest, NextResponse } from "next/server";
 
 export type Middleware = (request: NextRequest) => Promise<NextResponse>;
@@ -23,4 +24,10 @@ export interface BlogPost {
     author: string;
     createdat: string;
     description: string;
+}
+
+export interface AuthFormProps {
+    handleLogin?: (formData: FormData) => Promise<APIError | { success: boolean; } | undefined>,
+    handleSignUp?: (formData: FormData) => Promise<{ success: boolean; } | undefined>,
+    registration: boolean,
 }
