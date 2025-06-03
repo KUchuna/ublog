@@ -73,7 +73,7 @@ export default function NewBlogEditor({ handleSubmit}: {handleSubmit: (formData:
       },
       paragraph: {
         HTMLAttributes: {
-          class: 'bg-blue-400'
+          class: ''
         }
       }
     }), 
