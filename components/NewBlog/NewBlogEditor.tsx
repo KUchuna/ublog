@@ -52,7 +52,7 @@ export default function NewBlogEditor({ handleSubmit}: {handleSubmit: (formData:
       },
       codeBlock: {
         HTMLAttributes: {
-          class: 'code-block'
+          class: 'code-block bg-red-500'
         }
       },
       heading: {
@@ -69,6 +69,11 @@ export default function NewBlogEditor({ handleSubmit}: {handleSubmit: (formData:
       horizontalRule: {
         HTMLAttributes: {
           class: 'horizontal-rule'
+        }
+      },
+      paragraph: {
+        HTMLAttributes: {
+          class: 'bg-blue-400'
         }
       }
     }), 

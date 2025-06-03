@@ -4,7 +4,7 @@ import { withApiMiddleware } from "@/middlewares/withApiMiddleware";
 
 export default chain([
 	withApiMiddleware,
-  	withAuthMiddleware,
+  withAuthMiddleware,
 ]);
 
 export const config = {

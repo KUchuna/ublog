@@ -15,6 +15,7 @@ dotenv.config({ path: '.env.development.local' });
 //         enabled: true,
 //         autoSignIn: true
 //     }, 
+//     plugins: [nextCookies()]
 // });
 
 export const auth = betterAuth({

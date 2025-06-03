@@ -2,8 +2,11 @@
 
 import { BlogPost } from "@/types"
 import {motion} from "motion/react"
+import { useRouter } from "next/navigation";
 
 export default function BlogCard({blog}: {blog: BlogPost}) {
+
+    const router = useRouter()
 
     const formattedDate = new Date(blog.createdat).toLocaleDateString("en-US", {
         year: "numeric",
@@ -44,6 +47,7 @@ export default function BlogCard({blog}: {blog: BlogPost}) {
                     variants={buttonVariants}
                     initial="initial"
                     whileHover="hover"
+                    onClick={() => router.push(`/blog/${blog.id}`)}
                 >
                     Read more 
                     <motion.img src="/icons/rightarrow.svg" alt="" width={18} height={18}

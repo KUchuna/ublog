@@ -2,6 +2,7 @@
 import { auth } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
+import { unstable_rethrow } from "next/navigation";
 
 export async function getSession() {
     try {
@@ -17,6 +18,7 @@ export async function getSession() {
         
     } catch (error) {
         console.log(error);
+        unstable_rethrow(error)
     }
 }
 
@@ -45,9 +47,24 @@ export async function createBlog(
 }
 
 export async function getBlogs() {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-blogs`, {
-      headers: await headers()
-    })
-    const { blogs } = await response.json();
-    return blogs?.rows;
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-blogs`, {
+        headers: await headers(),
+      });
+
+      const data = await response.json();
+      return data.blogs?.rows;
+    } catch (error) {
+      console.error("getBlogs error:", error);
+      unstable_rethrow(error);
+    }
+}
+
+export async function getSingleBlog(id: string) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-single-blog/${id}`, {
+    headers: await headers()
+  });
+  const blog = await response.json();
+  
+  return blog.blog;
 }

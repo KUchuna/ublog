@@ -1,4 +1,4 @@
-import { getBlogs } from "@/api";
+import { getBlogs, getSingleBlog } from "@/api";
 import BlogCard from "@/components/Blog/BlogCard";
 import "@/css/tiptap.css";
 import { BlogPost } from "@/types";
@@ -13,6 +13,10 @@ export default async function Blog() {
       </div>
     )
   }
+
+  const blog = await getSingleBlog("27")
+
+  console.log(blog)
 
   return (
     <div className="max-w-7xl w-full">
