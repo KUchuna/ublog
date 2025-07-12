@@ -33,7 +33,7 @@ export async function getBlogs() {
       });
 
       const data = await response.json();
-      return data.blogs?.rows;
+      return data.blogs;
     } catch (error) {
       console.error("getBlogs error:", error);
       unstable_rethrow(error);

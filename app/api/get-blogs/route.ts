@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server';
-import localDb from '@/lib/dblocal';
+import { neon } from '@neondatabase/serverless';
 
 export const revalidate = 0;
 
+const sql = neon(process.env.DATABASE_URL!);
+
 export async function GET() {
   try {
-    const blogs = await localDb.query(`
+    const blogs = await sql(`
       SELECT 
         blog.*,
         "user".name AS author
@@ -16,6 +18,7 @@ export async function GET() {
 
     return NextResponse.json({ blogs }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
+    console.error('Error fetching blogs:', error);
+    return NextResponse.json({ error: 'Failed to fetch blogs' }, { status: 500 });
   }
 }
