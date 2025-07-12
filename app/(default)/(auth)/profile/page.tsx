@@ -1,9 +1,12 @@
-import { getSession } from "@/api"
+import { auth } from "@/lib/auth"
+import { headers } from "next/headers"
 import Link from "next/link"
 
 export default async function ProfilePage() {
 
-    const session = await getSession()
+    const session = await auth.api.getSession({
+        headers: await headers()
+    })
 
 
 

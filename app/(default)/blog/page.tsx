@@ -14,10 +14,6 @@ export default async function Blog() {
     )
   }
 
-  const blog = await getSingleBlog("27")
-
-  console.log(blog)
-
   return (
     <div className="max-w-7xl w-full">
       <div className="flex flex-wrap justify-center w-full gap-5">

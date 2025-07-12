@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Navigation from "./Navigation";
-import { getSession } from "@/api";
 import ProfileButton from "./ProfileButton";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export default async function Header() {
 
-    const session = await getSession()
+    const session = await auth.api.getSession({
+            headers: await headers()
+    })
 
     return (
         <header className="fixed w-full px-16 py-2 flex justify-center top-0 z-50 select-none">

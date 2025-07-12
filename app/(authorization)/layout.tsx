@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import "@/app/globals.css";
-import { getSession } from "@/api";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "UBlog - Auth",
@@ -13,7 +14,10 @@ export default async function AuthLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getSession()
+  
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
 
   if (session) {
     redirect("/");

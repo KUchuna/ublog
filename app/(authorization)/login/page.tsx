@@ -1,7 +1,7 @@
 import AuthForm from "@/components/Auth/AuthForm";
 import { signInAction } from "@/app/actions";
 
-export default function Login() {
+export default async function Login() {
 
     async function handleLogin(formData: FormData) {
         "use server"

@@ -1,20 +1,12 @@
 import { betterFetch } from "@better-fetch/fetch";
 import type { auth } from "@/lib/auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import type { CustomMiddleware } from "@/middlewares/chain";
 
 type Session = typeof auth.$Infer.Session;
 
 export function withAuthMiddleware(next: CustomMiddleware): CustomMiddleware {
   return async (request, event, response) => {
-
-    const url = request.nextUrl;
-    const { pathname } = url;
-
-    if (pathname.startsWith(`/api/`)) {
-        return
-    }
-
     const { data: session } = await betterFetch<Session>("/api/auth/get-session", {
       baseURL: request.nextUrl.origin,
       headers: {

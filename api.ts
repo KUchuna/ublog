@@ -1,26 +1,6 @@
 "use server"
-import { auth } from "@/lib/auth";
-import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { unstable_rethrow } from "next/navigation";
-
-export async function getSession() {
-    try {
-        const session = await auth.api.getSession({
-            headers: await headers()
-        })
-
-        if (!session) {
-            return null
-        }
-        
-        return session && session
-        
-    } catch (error) {
-        console.log(error);
-        unstable_rethrow(error)
-    }
-}
 
 export async function createBlog(
   title: string,

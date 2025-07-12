@@ -1,11 +1,14 @@
-import { getSession } from "@/api";
 import NewBlogEditor from "./NewBlogEditor";
 import { createBlogAction } from "@/app/actions";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function NewBlogForm() {
 
-    const session = await getSession()
+    const session = await auth.api.getSession({
+        headers: await headers()
+    })
 
     const user = session?.user
 
@@ -21,9 +24,8 @@ export default async function NewBlogForm() {
         } catch (error) {
             console.log("error creating blog", error)
             return
-        } finally {
-            redirect('/blog')
         }
+        redirect('/blog')
     }
 
     return (
