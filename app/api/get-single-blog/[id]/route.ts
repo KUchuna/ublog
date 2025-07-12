@@ -5,6 +5,7 @@ const sql = neon(process.env.DATABASE_URL!);
 export const revalidate = 0;
 
 export async function GET(
+  request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params
