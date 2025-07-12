@@ -1,6 +1,5 @@
 "use server"
 import { headers } from "next/headers";
-import { unstable_rethrow } from "next/navigation";
 
 export async function createBlog(
   title: string,
@@ -28,15 +27,12 @@ export async function createBlog(
 
 export async function getBlogs() {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-blogs`, {
-        headers: await headers(),
-      });
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-blogs`);
 
       const data = await response.json();
-      return data.blogs?.rows;
+      return data.blogs;
     } catch (error) {
       console.error("getBlogs error:", error);
-      unstable_rethrow(error);
     }
 }
 

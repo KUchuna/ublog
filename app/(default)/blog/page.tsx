@@ -6,7 +6,7 @@ import { BlogPost } from "@/types";
 export default async function Blog() {
   const blogs = await getBlogs();
 
-  if (blogs.length == 0) {
+  if (blogs.length === 0) {
     return (
       <div>
         No posts available
