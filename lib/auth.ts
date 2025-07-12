@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 import { betterAuth } from "better-auth";
 import { Pool } from "pg";
+// import localDb from "./dblocal";
+import { nextCookies } from "better-auth/next-js";
 
 dotenv.config({ path: '.env.development.local' });
 
@@ -13,4 +15,14 @@ export const auth = betterAuth({
         enabled: true,
         autoSignIn: true
     }, 
+    plugins: [nextCookies()]
 });
+
+// export const auth = betterAuth({
+//     database: localDb as Pool,
+//     emailAndPassword: {  
+//         enabled: true,
+//         autoSignIn: true
+//     },
+//     plugins: [nextCookies()]
+// });

@@ -39,13 +39,13 @@ export default function Featured() {
                       className="relative px-2 py-1 cursor-pointer"
                       onClick={() => setActiveTab(tab)}
                   >
-                      <span className={activeTab === tab ? "text-[#3d7068]" : "text-gray-500 opacity-50"}>
+                      <span className={activeTab === tab ? "text-main" : "text-gray-500 opacity-50"}>
                           {tab}
                       </span>
                       {activeTab === tab && (
                           <motion.div
                               layoutId="underline"
-                              className="absolute left-0 right-0 h-[2px] bg-[#3d7068] bottom-[-2px]"
+                              className="absolute left-0 right-0 h-[2px] bg-main bottom-[-2px]"
                               transition={{ type: "tween", duration: 0.3 }}
                           />
                       )}

@@ -1,4 +1,3 @@
-import Tiptap from "@/components/Globals/TipTap";
 import Featured from "@/components/Home/Featured";
 import Hero from "@/components/Home/Hero";
 import { auth } from "@/lib/auth";

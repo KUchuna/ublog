@@ -10,7 +10,7 @@ export default function Hero({user}: {user: User | null}) {
     const router = useRouter()
 
     return (
-        <section className="w-full bg-white rounded-2xl overflow-hidden shadow-2xl flex select-none">
+        <section className="w-full bg-white rounded-2xl overflow-hidden shadow-2xl flex select-none mb-12">
             <div className="w-[60%] h-[520px] relative">
                 <Image src={'/images/hero.png'} alt="" fill className="object-cover object-bottom-right z-0 "/>
                 <motion.div 
